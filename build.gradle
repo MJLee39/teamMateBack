@@ -27,3 +27,17 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+// JAR 빌드 관련 설정
+tasks.jar {
+    enabled = false // 실행 가능한 Spring Boot JAR만 생성
+}
+
+// bootJar에 Main-Class 설정 추가
+tasks.bootJar {
+    enabled = true
+    manifest {
+        attributes 'Start-Class': 'org.example.Main' // 메인 클래스 경로를 실제 패키지에 맞게 수정
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
